@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conversao-peso
+spec:
+  selector:
+    matchLabels:
+      app: conversao-peso
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: conversao-peso
+    spec:
+      containers:
+      - name: conversao-peso
+        image: lucaslehnen/conversao-peso:v1.0.0
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
